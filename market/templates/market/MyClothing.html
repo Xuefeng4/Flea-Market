@@ -1,0 +1,43 @@
+{% extends 'market/base.html' %}
+
+{%  block Content %}
+    {% if user.pk == author_pk or admin_user %}
+    <div class="container" style="background-color:whitesmoke; width:80%">
+    <h3 class="blog-post-title"><a href="{% url "ClothingCreate" %}">Have Something to Trade?
+        <span href="" class="btn btn-blue" style="margin-left:20px">Start a Post</span></h3>
+    </div>
+
+        {% for clothing in ClothingItems %}
+            <div class="container" style="background-color:whitesmoke; width:80%">
+                <div class="blog" style="padding-top:10px;">
+                    <div class="row" >
+                        <div class="col-md-8 blog-content" style="padding-bottom:10px">
+                            <div class="row">
+                                <div class="col-md-12 blog-block">
+                                    <div class="inner" style="padding-bottom:0">
+                                    <div class="blog-image">
+                                    <i class="fa fa-image"></i>
+                                    <a href=""><img src="{{ clothing.clothingPicUrl }}" alt="" class="img-responsive"></a>
+                                    </div>
+                                    <h3 class="blog-post-title"><a href="">{{ clothing.clothingName }}</a></h3>
+                                    <div class="blog-meta">{{ clothing.clothingPostDate }}<span>|</span><a href="">${{ clothing.clothingPrice }}</a></div>
+                                    <p>
+                                        {{ clothing.clothingDescription }}
+                                    </p>
+                                        <a href="{{ clothing.get_update_url }}" class="btn btn-blue" style="margin-right: 20px">Edit Post</a>
+                                        <a href="{{ clothing.get_delete_url }}" class="btn btn-blue">Delete Post</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        {% empty %}
+            <li><em>There are currently nothing posted.</em></li>
+        {% endfor %}
+    {%else%}
+        <h2><em>You cannot view other user's post page</em></h2>
+    {%endif%}
+
+{%  endblock %}

@@ -1,0 +1,22 @@
+{% extends 'market/base.html' %}
+
+{% block Content %}
+    <div class="container">
+      <div class="blog">
+          <div class="row">
+              <div class="col-md-12 blog-content detail">
+                <H1>
+                Post Your Car
+                </H1>
+                <form
+                    action="{% url 'CarCreate' %}"
+                    method='post'>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-blue" type="submit">Post Now</button>
+                </form>
+              </div>
+              </div>
+          </div>
+    </div>
+{% endblock %}

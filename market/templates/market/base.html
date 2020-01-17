@@ -1,0 +1,206 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+
+    <!-- fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700' rel='stylesheet' type='text/css'>
+    <link href="{% static 'market/font-awesome/css/font-awesome.css' %}" rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap -->
+
+    <link href="{% static 'market/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- main css -->
+
+    <link href="{% static 'market/style.css'%}" rel="stylesheet">
+    <link href="{% static 'market/responsive.css' %}" rel="stylesheet">
+
+    <!-- Slider -->
+    <link href="{% static 'market/css/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'market/css/owl.theme.css' %}" rel="stylesheet">
+    <link href="{% static 'market/css/owl.transitions.css' %}" rel="stylesheet">
+
+    <!-- lightbox -->
+    <link href="{% static 'market/css/prettyPhoto.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="believe-nav"> <!-- Nav -->
+    <div class="container">
+    <div class="min-marg">
+    <nav class="navbar navbar-default">
+    <!-- <div class="container-fluid"> -->
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+    <li class="active"><a href="{% url "HouseList" %}">House <span class="sr-only">(current)</span></a></li>
+    <li><a href="{% url "BookList" %}">Book</a></li>
+    <li><a href="{% url "ClothingList" %}">Clothing</a></li>
+    <li><a href="{% url "CarList" %}">Car</a></li>
+    <li><a href="{% url "OtherList" %}">Other</a></li>
+        {% if user.is_authenticated %}
+            <li class="dropdown menu-small">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">My Post <i class="fa fa-angle-down"></i></a>
+            <ul class="dropdown-menu" role="menu">
+            <ul>
+            <li><a href="{% url "MyHouse" pk=user.id %}">MY House</a></li>
+            <li><a href="{% url "MyBook" pk=user.id %}">MY Book</a></li>
+            <li><a href="{% url "MyClothing" pk=user.id %}">MY Clothing</a></li>
+                <li><a href="{% url "MyCar" pk=user.id %}">MY Car</a></li>
+            <li><a href="{% url "MyOther" pk=user.id %}">MY Other</a></li>
+            </ul>
+            </ul>
+            </li>
+        {% endif %}
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+
+            <li><a href="{% url 'LogOut' %}"><span>Log Out, {{ user.get_username }}</span></a></li>
+
+          {% else %}
+            <li><a href="{% url 'LogIn' %}"><span>Log In</span></a></li>
+
+          {% endif %}
+    </ul>
+
+
+    </div><!-- /.navbar-collapse -->
+    <!--</div> -->
+
+    </nav>
+    </div>
+    <div class="srch-form">
+    <form class="side-search">
+    <div class="input-group">
+    <input type="text" class="form-control search-wid" placeholder="Search Here" aria-describedby="basic-addon2">
+    <a href="" class="input-group-addon btn-side-serach" id="basic-addon2"><i class="fa fa-search"></i></a>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div> <!-- Nav -->
+
+    <main>
+    <div>
+    {% block Slider %}
+    {% endblock %}
+    {% block Discount %}
+    {% endblock %}
+    {% block Content %}
+    {% endblock %}
+    </div>
+    </main>
+
+    <div id="footer"><!-- Footer -->
+    <div class="footer-widget">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-3">
+    <div class="text-widget">
+    <div class="wid-title">Welcome to</div>
+    <p>
+    It has<br/>everything you need to start selling today! <a href="">Get your product !</a>
+    </p>
+    <ul class="ft-soc clearfix">
+    <li><a href=""><i class="fa fa-facebook-square"></i></a></li>
+    <li><a href=""><i class="fa fa-twitter"></i></a></li>
+    <li><a href=""><i class="fa fa-google-plus-square"></i></a></li>
+    <li><a href=""><i class="fa fa-instagram"></i></a></li>
+    <li><a href=""><i class="fa fa-pinterest"></i></a></li>
+    </ul>
+    <div class="clearfix"></div>
+    </div>
+    </div>
+    <div class="col-md-2">
+    <div class="quick-links">
+    <div class="wid-title">Quick Links</div>
+    <ul>
+    <li><a href="{% url "HouseList" %}">House</a></li>
+    <li><a href="{% url "BookList" %}">Book</a></li>
+    <li><a href="{% url "ClothingList" %}">Clothing</a></li>
+    <li><a href="{% url "CarList" %}">Car</a></li>
+    <li><a href="{% url "OtherList" %}">Other</a></li>
+    </ul>
+    </div>
+    </div>
+    <div class="col-md-2">
+    <div class="term">
+    <div class="wid-title">&nbsp;</div>
+    </div>
+    </div>
+    <div class="col-md-2">
+    <div class="quick-links">
+    <div class="wid-title">My Account</div>
+    {% if user.is_authenticated %}
+    <ul>
+    <li><a href="{% url "MyHouse" pk=user.id %}">My House</a></li>
+    <li><a href="{% url "MyBook" pk=user.id %}">My Book</a></li>
+    <li><a href="{% url "MyClothing" pk=user.id %}">My Clothing</a></li>
+    <li><a href="{% url "MyCar" pk=user.id %}">My Car</a></li>
+    <li><a href="{% url "MyOther" pk=user.id %}">My Other</a></li>
+    </ul>
+        {%  endif %}
+    </div>
+    </div>
+    <div class="col-md-3">
+    <div class="subscribe">
+    <div class="wid-title">Subscribe for OFFERS & UPDATES</div>
+    <p>
+    Enter your email and we'll send you a coupon
+    with 10% off your next order. Add any text here
+    </p>
+    <form>
+    <div class="form-group">
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+    </div>
+    <button type="submit" class="btn btn-default">Subscribe Now</button>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="footer-text">
+    <div class="container">
+    <p>Copyright &copy; 2019.Company name All rights reserved.</p>
+    </div>
+    </div>
+    </div><!-- Footer -->
+    </div> <!-- wrapper -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src ="{% static 'market/js/library.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'market/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'market/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'market/js/jquery.raty.js' %}"></script>
+    <script src="{% static 'market/js/ui.js' %}"></script>
+    <script src="{% static 'market/js/jquery.prettyPhoto.js' %}"></script>
+    <script src="{% static 'market/js/jquery.selectbox-0.2.js' %}"></script>
+    <script src="{% static 'market/js/theme-script.js' %}"></script>
+  </body>
+</html>

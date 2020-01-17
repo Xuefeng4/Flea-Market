@@ -1,0 +1,95 @@
+{% extends 'market/base.html' %}
+
+{%  block Content %}
+    <div class="container">
+        <div class="blog">
+            <div class="row">
+            <div class="col-md-12 blog-content detail">
+            <div class="row">
+            {%  block Slider %}
+            <div id="main-slider" style="width:50%; margin-left: auto; margin-right: auto"> <!-- Slider -->
+            <div id="home-slider" class="owl-carousel owl-theme">
+            <div class="item">
+            <img src="{{ CarItem.carPicUrl }}" alt="slide-1" class="img-responsive">
+            </div>
+            <div class="item">
+            <img src="{{ CarItem.carPicUrl }}" alt="slide-2" class="img-responsive">
+            </div>
+        </div>
+    </div> <!-- Slider -->
+{% endblock %}
+
+<div class="row">
+    <div class="col-md-12 blog-block">
+        <h3 class="blog-post-title">{{ CarItem.carName }}</h3>
+            <div class="blog-meta"> Post Date : {{ CarItem.carPostDate }} </div>
+            <div class="row full-text">
+            <div class="col-md-12">
+            <h3 class="sub-title">Car Price</h3>
+            <p>{{ CarItem.carPrice }}</p>
+            </div>
+            </div>
+
+            <div class="row full-text">
+            <div class="col-md-12">
+            <h3 class="sub-title">Car Brand</h3>
+            <p>{{ CarItem.carBrand }}</p>
+            </div>
+            </div>
+
+            <div class="row full-text">
+            <div class="col-md-12">
+            <h3 class="sub-title">Car Description</h3>
+            <p>{{ CarItem.carDescription }}</p>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-md-6">
+            <h3 class="sub-title-lvl-2">Car Millege</h3>
+            <p>{{ CarItem.carMillege }}</p>
+            </div>
+            <div class="col-md-6">
+            <h3 class="sub-title-lvl-2">Car Years</h3>
+            <p>{{ CarItem.carYears }}</p>
+            </div>
+            </div>
+
+            <h3 class="sub-title author">About Author</h3>
+            <div class="author-block">
+            <div class="row">
+            {#                                  <div class="col-md-3">#}
+            {#                                      <img src="images/author.jpg" alt="" class="img-responsive">#}
+            {#                                  </div>#}
+            <div class="col-md-9">
+            <div class="author-name">
+            <h3>
+            {{ CarItem.carAuthor.username}}
+            </h3>
+            <br>
+            <br>
+            <div class="author-date">
+            Date Joined:
+            {{ CarItem.carAuthor.date_joined}}
+            </div>
+            <br>
+            <br>
+            <div class="author-date">
+            Email:
+            {{ CarItem.carAuthor.email}}
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+    {% if user.pk == author_pk or admin_user %}
+        <a href="{{ CarItem.get_update_url }}" class="btn btn-blue" style="margin-right: 100px">Edit Post</a>
+        <a href="{{ CarItem.get_delete_url }}" class="btn btn-blue">Delete Post</a>
+    {% endif %}
+</div>
+
+
+
+
+{% endblock %}

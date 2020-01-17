@@ -1,0 +1,152 @@
+{% extends 'market/base.html' %}
+{%  block Slider %}
+        <div id="main-slider"  > <!-- Slider -->
+            <div id="home-slider" class="owl-carousel owl-theme" >
+                <div class="item">
+                    <img src="https://image.cnbcfm.com/api/v1/image/106141453-1569002923097evporsche_taycan_turbo_2019_porsche_ag.jpg?v=1569003053&w=1400&h=950" alt="slide-1" class="img-responsive">
+                    <div class="slider-desc">
+                    <div class="container">
+                    <div class="row">
+                    <div class="col-md-6">
+                    <div class="slide-offers-left">
+                    <div class="slide-offers-title"><span>Wanna find A Car?</span><br/>Get a second-hand Now</div>
+                    <p>Order from other student on campus<br/></p>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                    <div class="slide-offers-right">
+                    <div class="slide-offers-title"><span></span><br/></div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="item">
+                    <img src="https://media.wired.com/photos/5d72a4682f4c730008bbaad8/191:100/w_2400,h_1256,c_limit/Transpo_RU_P19_0578_a3_rgb.jpg" alt="slide-2" class="img-responsive">
+                    <div class="slider-desc">
+                    <div class="container">
+                    <div class="row">
+                    <div class="col-md-6">
+                    <div class="slide-offers-left">
+                    <div class="slide-offers-title"><span>Lower Price Sharing</span><br/>Find it Online</div>
+                    <p>Browsing Now</p>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Slider -->
+        </div>
+
+{% endblock %}
+
+{%  block Discount %}
+    <div id="content"> <!-- Content -->
+        <div class="container">
+            <div class="home-content">
+            <div class="cat-offers">
+            <div class="row">
+            <div class="col-md-4">
+            <div class="cat-sec-1">
+            <img src="http://static1.squarespace.com/static/5b2d6a62372b967ba6174584/5b2fd09a1ae6cf66f7356fae/5b529a80562fa73754c68e3e/1547488144257/quad.jpg?format=1500w" class="img-responsive" alt="">
+            <div class="cat-desc">
+            <div class="cat-inner">
+            <div class="cat-title">UIUC</div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="col-md-4">
+            <div class="cat-sec-2">
+            <img src="http://www.gazettechicago.com/index/wp-content/uploads/2019/02/UIC-campus.jpg" class="img-responsive" alt="">
+            <div class="cat-desc">
+            <div class="cat-inner">
+            <div class="cat-title">UIC</div>
+            </div>
+            </div>
+            </div>
+            </div>
+            <div class="col-md-4">
+            <div class="cat-sec-3">
+            <img src="https://www.uis.edu/cbam/wp-content/uploads/sites/18/2013/03/campus.jpg" class="img-responsive" alt="">
+            <div class="cat-desc">
+            <div class="cat-inner">
+            <div class="cat-title">UIS</div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block Content %}
+    <div class="newest">
+        <div class="container">
+            <div class="newest-content">
+                <div class="newest-tab">
+                <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="1" aria-labelledby="cat-1">
+                <div class="row clearfix">
+
+                {% for car in CarList %}
+                        <div class="col-md-3 prdct-grid">
+                            <div class="product-fade">
+                            <div class="product-fade-wrap">
+                                <div class="item"><img src="{{ car.carPicUrl }}"  alt="" class="img-responsive"></div>
+
+
+                            <div class="product-fade-ct">
+                            <div class="product-fade-control">
+                            <div class="clearfix"></div>
+                            <a href="{% url "CarDetail" pk=car.carId  %}" class="btn btn-to-cart"><span class="bag"></span><span>Explore Detail</span><div class="clearfix"></div></a>
+                            </div>
+                            </div>
+                            </div>
+
+                            </div>
+
+                            <div class="product-name">
+                <a href="">{{ car.carName }}</a>
+                </div>
+                <div class="product-price">
+                ${{ car.carPrice }}
+                </div>
+                                          </div>
+                {% empty %}
+                <li><em>There are currently no cars available.</em></li>
+                {% endfor %}
+
+
+                </div>
+                </div>
+
+
+                <div role="tabpanel" class="tab-pane fade" id="2" aria-labelledby="cat-2">
+                <div class="row">
+                <div class="col-md-12">
+                <p>....</p>
+                </div>
+                </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="3" aria-labelledby="cat-3">
+                <div class="row">
+                <div class="col-md-12">
+                <p>....</p>
+                </div>
+                </div>
+                </div>
+
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

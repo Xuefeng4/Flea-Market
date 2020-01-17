@@ -1,0 +1,23 @@
+{% extends 'market/base.html' %}
+
+{% block Content %}
+    <div class="container">
+      <div class="blog">
+          <div class="row">
+              <div class="col-md-12 blog-content detail">
+                <H1>
+                Update Post
+                </H1>
+                <form
+                    action="{{ house.get_update_url }}"
+                    method='post'>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Update Post</button>
+
+                </form>
+              </div>
+              </div>
+          </div>
+    </div>
+{% endblock %}
